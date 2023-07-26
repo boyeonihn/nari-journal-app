@@ -1,15 +1,35 @@
-import { useState } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import Home from './pages/Home';
+import New from './pages/New';
+import Edit from './pages/Edit';
+import Diary from './pages/Diary';
+import Root from './pages/Root';
+
+import { createBrowserRouter } from 'react-router-dom';
 import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <>
-      <h2>App.js</h2>
-    </>
-  );
-}
+const App = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />,
+    children: [
+      {
+        path: '/home',
+        element: <Home />,
+      },
+      {
+        path: '/diary/:id',
+        element: <Diary />,
+      },
+      {
+        path: '/new',
+        element: <New />,
+      },
+      {
+        path: '/edit',
+        element: <Edit />,
+      },
+    ],
+  },
+]);
 
 export default App;
