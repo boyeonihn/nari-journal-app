@@ -1,42 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap');
+
 #root {
   max-width: 1280px;
-  margin: 0 auto;
   padding: 2rem;
+  font-family: 'Nanum Pen Script', cursive;
+  font-family: 'Yeon Sung', cursive;
+  background-color: rgb(251, 251, 234);
+  color: teal;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+body {
+  background-color: #61dafbaa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (min-width: 650px) {
+  body {
+    background-color: paleturquoise;
   }
-  to {
-    transform: rotate(360deg);
+
+  .App {
+    width: 640px;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (max-width: 650px) {
+  .App {
+    width: 90vw;
   }
 }
 
-.card {
-  padding: 2em;
+.App {
+  min-height: 100vh;
 }
 
-.read-the-docs {
-  color: #888;
+.Button {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+
+  padding: 10px 20px;
+  font-size: 18px;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.Button_default {
+  background-color: lightgray;
+  color: black;
+}
+
+.Button_positive {
+  background-color: lightgreen;
+}
+
+.Button_negative {
+  background-color: lightsalmon;
+}
+
+/* HEADER */
+
+header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+header > div {
+  display: flex;
+}
+
+header .head_text {
+  width: 50%;
+  font-size: 25px;
+  justify-content: center;
+}
+
+header .head_btn_left {
+  width: 25%;
+  justify-content: start;
+}
+
+header .head_btn_right {
+  width: 25%;
+  justify-content: end;
+}
+
+header button {
+  font-family: inherit;
+}
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  padding-right: 120px;
+  padding-left: 120px;
 }
