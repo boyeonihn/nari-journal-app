@@ -28,6 +28,8 @@ const reducer = (state, action) => {
   return newState;
 };
 
+export const DiaryStateContext = React.createContext();
+export const DiaryDispatchContext = React.createContext();
 
 export default function Root() {
   const [data, dispatch] = useReducer(reducer, []);
@@ -68,10 +70,14 @@ export default function Root() {
     });
   };
   return (
-    <>
-      <h1>나리 기록들</h1>
-      <RouteTest />
-      <Outlet />
-    </>
+    <div className="App">
+      <DiaryDispatchContext.Provider value={{ onCreate, onRemove, onEdit }}>
+        <DiaryStateContext.Provider value={data}>
+          <h1>나리 기록들</h1>
+          <RouteTest />
+          <Outlet />
+        </DiaryStateContext.Provider>
+      </DiaryDispatchContext.Provider>
+    </div>
   );
 }
