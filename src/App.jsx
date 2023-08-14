@@ -13,7 +13,7 @@ const App = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: '/home',
+        path: '/',
         element: <Home />,
       },
       {
@@ -25,7 +25,7 @@ const App = createBrowserRouter([
         element: <New />,
       },
       {
-        path: '/edit',
+        path: '/edit/:id',
         element: <Edit />,
       },
     ],
