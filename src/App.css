@@ -7,7 +7,6 @@
   font-family: 'Yeon Sung', cursive;
   background-color: rgb(251, 251, 234);
   color: teal;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 body {
@@ -35,6 +34,10 @@ body {
   }
 }
 
+a {
+  text-decoration: none;
+  color: plum;
+}
 .App {
   min-height: 100vh;
 }
@@ -104,4 +107,84 @@ nav {
   justify-content: space-evenly;
   padding-right: 120px;
   padding-left: 120px;
+}
+
+/* DiaryList */
+
+.menu_container {
+  margin-top: 20px;
+  margin-bottom: 30px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.left_col,
+.right_col {
+  width: 50%;
+}
+
+.right_col button {
+  width: 100%;
+}
+
+.DiaryList .ControlMenu {
+  margin-right: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: plum;
+
+  padding: 10px 20px;
+
+  cursor: pointer;
+  font-family: 'Yeon Sung';
+  font-size: 1em;
+}
+
+/* DiaryItem */
+
+.DiaryItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0px;
+  align-items: center;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.DiaryItem img {
+  height: 80px;
+}
+
+.emotionContainer {
+  cursor: pointer;
+  min-width: 120px;
+  height: 80px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+.emotionContainer_1 {
+  background-color: #64c964;
+}
+
+.emotionContainer_2 {
+  background-color: #9dd772;
+}
+
+.emotionContainer_3 {
+  background-color: #fdce17;
+}
+
+.emotionContainer_4 {
+  background-color: #fd8446;
+}
+
+.emotionContainer_5 {
+  background-color: #fd565f;
+}
+
+.DiaryContent {
+  cursor: pointer;
+  text-align: left;
+  width: 50%;
 }
