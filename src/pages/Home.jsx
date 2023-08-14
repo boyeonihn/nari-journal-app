@@ -1,7 +1,15 @@
 import Header from '../components/Header';
 import Button from '../components/Button';
+import { useContext, useState, useEffect } from 'react';
+import { DiaryStateContext } from './Root';
+import { DiaryList } from '../components/DiaryList';
 
 const Home = () => {
+  const diaryList = useContext(DiaryStateContext);
+
+  const [data, setData] = useState([]);
+  const [currentDate, setCurrentDate] = useState(new Date());
+
   const increaseMonth = () => {
     setCurrentDate(
       new Date(
