@@ -1,5 +1,4 @@
-import { Outlet } from 'react-router-dom';
-import RouteTest from '../components/RouteTest';
+import { Outlet, Link } from 'react-router-dom';
 import React, { useReducer, useRef } from 'react';
 
 const reducer = (state, action) => {
@@ -73,8 +72,9 @@ export default function Root() {
     <div className="App">
       <DiaryDispatchContext.Provider value={{ onCreate, onRemove, onEdit }}>
         <DiaryStateContext.Provider value={data}>
-          <h1>나리 기록들</h1>
-          <RouteTest />
+          <h1>
+            <Link to={'/'}>나리 기록들</Link>
+          </h1>
           <Outlet />
         </DiaryStateContext.Provider>
       </DiaryDispatchContext.Provider>
