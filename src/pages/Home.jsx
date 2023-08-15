@@ -9,6 +9,10 @@ const Home = () => {
 
   const [data, setData] = useState([]);
   const [currentDate, setCurrentDate] = useState(new Date());
+  const headText = `${currentDate.getFullYear()}년 ${
+    currentDate.getMonth() + 1
+  }월`;
+
   useEffect(() => {
     if (diaryList.length >= 1) {
       const firstDay = new Date(
