@@ -188,3 +188,98 @@ nav {
   text-align: left;
   width: 50%;
 }
+
+/* Diary Writer */
+
+.DiaryWriter section {
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.subheader {
+  color: black;
+  font-size: 1.25rem;
+}
+
+.DiaryWriter .input_date {
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+  padding: 10px 20px;
+  cursor: pointer;
+
+  font-family: 'Nanum Pen Script';
+  font-size: 1.25rem;
+}
+.input_box {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 2%;
+}
+
+.text_wrapper {
+  width: 100%;
+}
+.input_textarea {
+  background-color: #ececec;
+  font-family: 'Yeon Sung';
+  font-size: 1.5rem;
+  font-weight: normal;
+
+  box-sizing: border-box;
+  width: 100%;
+  resize: vertical;
+
+  border: none;
+  border-radius: 5px;
+
+  padding: 20px;
+}
+
+.DiaryWriter .control_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* EmotionItem */
+
+.input_emotion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ececec;
+  padding: 20px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.input_emotion_img {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.iput_emotion span {
+  font-size: 18px;
+}
+
+.EmotionItem_on_1 {
+  background-color: #64c964;
+  color: white;
+}
+.EmotionItem_on_2 {
+  background-color: #9dd772;
+  color: white;
+}
+.EmotionItem_on_3 {
+  background-color: #fdce17;
+  color: white;
+}
+.EmotionItem_on_4 {
+  background-color: #fd8446;
+  color: white;
+}
+.EmotionItem_on_5 {
+  background-color: #fd565f;
+  color: white;
+}
