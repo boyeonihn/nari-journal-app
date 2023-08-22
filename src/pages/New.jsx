@@ -1,11 +1,10 @@
-import Header from '../components/Header';
+import DiaryWriter from '../components/DiaryWriter';
+
 const New = () => {
   return (
-    <section>
-      <Header headText="New Entry" />
-      <h1>New</h1>
-      <p>이곳은 New입니다</p>
-    </section>
+    <div>
+      <DiaryWriter />
+    </div>
   );
 };
 
