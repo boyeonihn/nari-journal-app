@@ -33,7 +33,7 @@ export const DiaryDispatchContext = React.createContext();
 export default function Root() {
   const [data, dispatch] = useReducer(reducer, []);
 
-  const dataId = useRef(0);
+  const dataId = useRef(data.length);
   //CREATE
   const onCreate = (date, content, emotion) => {
     dispatch({
@@ -68,6 +68,7 @@ export default function Root() {
       },
     });
   };
+
   return (
     <div className="App">
       <DiaryDispatchContext.Provider value={{ onCreate, onRemove, onEdit }}>
