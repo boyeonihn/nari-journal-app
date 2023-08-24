@@ -1,4 +1,8 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+
+import { DiaryStateContext } from './Root';
+import DiaryWriter from '../components/DiaryWriter';
 
 const Edit = () => {
   const navigate = useNavigate();
