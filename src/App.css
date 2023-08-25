@@ -283,3 +283,75 @@ nav {
   background-color: #fd565f;
   color: white;
 }
+
+/* Diary Page */
+
+.diary_info_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.diary_info_wrapper section {
+  margin-bottom: 20px;
+}
+
+.diary_img_wrapper {
+  background-color: #ececec;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: space-around;
+}
+
+.diary_img_wrapper > img {
+  height: 50%;
+  width: 50%;
+}
+
+.diary_img_wrapper_1 {
+  background-color: #64c964;
+  color: white;
+}
+.diary_img_wrapper_2 {
+  background-color: #9dd772;
+  color: white;
+}
+.diary_img_wrapper_3 {
+  background-color: #fdce17;
+  color: white;
+}
+.diary_img_wrapper_4 {
+  background-color: #fd8446;
+  color: white;
+}
+.diary_img_wrapper_5 {
+  background-color: #fd565f;
+  color: white;
+}
+
+.DiaryPage .emotion_descript {
+  font-size: 25px;
+  color: white;
+}
+
+.diary_content_wrapper {
+  width: 100%;
+  text-align: left;
+  background-color: #ececec;
+  border-radius: 5px;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.diary_content_wrapper p {
+  color: black;
+  padding: 20px;
+  text-align: left;
+  width: 100%;
+  font-family: 'Yeon Sung';
+  font-weight: 400;
+}
