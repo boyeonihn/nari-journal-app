@@ -1,5 +1,5 @@
 import { Outlet, Link } from 'react-router-dom';
-import React, { useReducer, useRef } from 'react';
+import React, { useReducer, useRef, useEffect } from 'react';
 
 const reducer = (state, action) => {
   let newState = [];
@@ -24,6 +24,8 @@ const reducer = (state, action) => {
     default:
       return state;
   }
+
+  localStorage.setItem('diary', JSON.stringify(newState));
   return newState;
 };
 
@@ -32,8 +34,20 @@ export const DiaryDispatchContext = React.createContext();
 
 export default function Root() {
   const [data, dispatch] = useReducer(reducer, []);
-
   const dataId = useRef(data.length);
+
+  useEffect(() => {
+    const localData = localStorage.getItem('diary');
+
+    if (localData) {
+      const diaryList = JSON.parse(localData).sort(
+        (a, b) => parseInt(b.id) - parseInt(a.id)
+      );
+      dataId.current = parseInt(diaryList[0].id) + 1;
+      dispatch({ type: 'INIT', data: diaryList });
+    }
+  }, []);
+
   //CREATE
   const onCreate = (date, content, emotion) => {
     dispatch({
