@@ -1,4 +1,4 @@
-import { useState, useRef, useContext, useEffect } from 'react';
+import { useState, useRef, useContext, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DiaryDispatchContext } from './../pages/Root';
 
@@ -22,9 +22,9 @@ const DiaryWriter = ({ isEdit, originData }) => {
     setContent(e.target.value);
   };
 
-  const handleClickEmote = (emotion) => {
+  const handleClickEmote = useCallback((emotion) => {
     setEmotion(emotion);
-  };
+  }, []);
 
   const handleRemove = () => {
     if (window.confirm('정말 삭제하시겠습니까?')) {

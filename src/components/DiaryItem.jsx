@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import Button from './Button';
-export const DiaryItem = ({ text, emotion, createdAt, id }) => {
+
+export const DiaryItem = React.memo(({ text, emotion, createdAt, id }) => {
   const navigate = useNavigate();
   const date = new Date(createdAt);
 
@@ -29,4 +31,4 @@ export const DiaryItem = ({ text, emotion, createdAt, id }) => {
       />
     </section>
   );
-};
+});
