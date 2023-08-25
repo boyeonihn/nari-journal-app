@@ -16,7 +16,7 @@ const DiaryWriter = ({ isEdit, originData }) => {
   const [emotion, setEmotion] = useState(3);
   const [content, setContent] = useState('');
 
-  const { onCreate, onEdit } = useContext(DiaryDispatchContext);
+  const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
 
   const onTextChange = (e) => {
     setContent(e.target.value);
@@ -26,6 +26,12 @@ const DiaryWriter = ({ isEdit, originData }) => {
     setEmotion(emotion);
   };
 
+  const handleRemove = () => {
+    if (window.confirm('정말 삭제하시겠습니까?')) {
+      onRemove(originData.id);
+      navigate('/', { replace: true });
+    }
+  };
   const handleSubmit = () => {
     if (content.length < 1) {
       contentRef.current.focus();
@@ -59,6 +65,11 @@ const DiaryWriter = ({ isEdit, originData }) => {
       <Header
         headText={isEdit ? '일기 수정하기' : '새 일기 쓰기'}
         leftChild={<Button text={'< 뒤로 가기'} onClick={() => navigate(-1)} />}
+        rightChild={
+          isEdit && (
+            <Button text={'삭제하기'} type="negative" onClick={handleRemove} />
+          )
+        }
       />
       <section>
         <Subheader text={isEdit ? '일기 날짜' : '오늘은 언제인가요?'} />
