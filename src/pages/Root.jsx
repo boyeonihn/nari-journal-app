@@ -1,5 +1,11 @@
 import { Outlet, Link } from 'react-router-dom';
-import React, { useReducer, useRef, useEffect } from 'react';
+import React, { useReducer, useRef, useEffect, useState } from 'react';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  'https://jyaajucrzwugiboenayh.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp5YWFqdWNyend1Z2lib2VuYXloIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTMwNDA4NTUsImV4cCI6MjAwODYxNjg1NX0.pJ5_ZmqkmRp9jU2M6A1dS4D6YAa1mGE2Mq1rgIdP_X4'
+);
 
 const reducer = (state, action) => {
   let newState = [];
