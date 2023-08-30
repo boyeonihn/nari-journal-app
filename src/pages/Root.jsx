@@ -1,5 +1,5 @@
 import { Outlet, Link } from 'react-router-dom';
-import React, { useReducer, useRef, useEffect, useState } from 'react';
+import React, { useReducer, useRef, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
