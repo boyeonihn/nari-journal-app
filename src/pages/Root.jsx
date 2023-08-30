@@ -1,10 +1,17 @@
 import { Outlet, Link } from 'react-router-dom';
 import React, { useReducer, useRef, useEffect } from 'react';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  'https://jyaajucrzwugiboenayh.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp5YWFqdWNyend1Z2lib2VuYXloIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTMwNDA4NTUsImV4cCI6MjAwODYxNjg1NX0.pJ5_ZmqkmRp9jU2M6A1dS4D6YAa1mGE2Mq1rgIdP_X4'
+);
 
 const reducer = (state, action) => {
   let newState = [];
   switch (action.type) {
     case 'INIT': {
+      console.log('initialize');
       return action.data;
     }
     case 'CREATE': {
@@ -25,7 +32,6 @@ const reducer = (state, action) => {
       return state;
   }
 
-  localStorage.setItem('diary', JSON.stringify(newState));
   return newState;
 };
 
@@ -37,33 +43,42 @@ export default function Root() {
   const dataId = useRef(data.length);
 
   useEffect(() => {
-    const localData = localStorage.getItem('diary');
-
-    if (localData) {
-      const diaryList = JSON.parse(localData).sort(
-        (a, b) => parseInt(b.id) - parseInt(a.id)
-      );
-      dataId.current = parseInt(diaryList[0].id) + 1;
-      dispatch({ type: 'INIT', data: diaryList });
-    }
+    getDiaries();
   }, []);
 
+  async function getDiaries() {
+    const { data } = await supabase.from('diary_entries').select();
+
+    if (data) {
+      dataId.current = data.length + 1;
+      dispatch({ type: 'INIT', data });
+    }
+  }
+
   //CREATE
-  const onCreate = (date, content, emotion) => {
+  const onCreate = async (date, content, emotion) => {
+    const newData = {
+      id: dataId.current,
+      date: new Date(date).getTime(),
+      content,
+      emotion,
+    };
+    const { error } = await supabase.from('diary_entries').insert(newData);
+
     dispatch({
       type: 'CREATE',
-      data: {
-        id: dataId.current,
-        date: new Date(date).getTime(),
-        content,
-        emotion,
-      },
+      data: newData,
     });
     dataId.current += 1;
   };
 
   //REMOVE
-  const onRemove = (targetId) => {
+  const onRemove = async (targetId) => {
+    const { error } = await supabase
+      .from('diary_entries')
+      .delete()
+      .eq('id', targetId);
+
     dispatch({
       type: 'REMOVE',
       targetId,
@@ -71,15 +86,21 @@ export default function Root() {
   };
 
   //EDIT
-  const onEdit = (targetId, date, content, emotion) => {
+  const onEdit = async (targetId, date, content, emotion) => {
+    const editedData = {
+      date: new Date(date).getTime(),
+      content,
+      emotion,
+    };
+
+    const { error } = await supabase
+      .from('diary_entries')
+      .update(editedData)
+      .eq('id', targetId);
+
     dispatch({
       type: 'EDIT',
-      data: {
-        id: targetId,
-        date: new Date(date).getTime(),
-        content,
-        emotion,
-      },
+      data: { ...editedData, id: targetId },
     });
   };
 
