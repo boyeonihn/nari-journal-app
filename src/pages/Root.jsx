@@ -46,6 +46,10 @@ const reducer = (state, action) => {
       newState = [action.data, ...state];
       break;
     }
+    case 'REMOVE': {
+      newState = state.filter((n) => n.id !== action.targetId);
+      break;
+    }
     default:
       return state;
   }
@@ -91,7 +95,12 @@ export default function Root() {
   };
 
   //REMOVE
-  const onRemove = (targetId) => {
+  const onRemove = async (targetId) => {
+    const { error } = await supabase
+      .from('diary_entries')
+      .delete()
+      .eq('id', targetId);
+
     dispatch({
       type: 'REMOVE',
       targetId,
