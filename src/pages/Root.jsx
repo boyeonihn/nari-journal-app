@@ -43,16 +43,18 @@ export default function Root() {
   const dataId = useRef(data.length);
 
   useEffect(() => {
-    const localData = localStorage.getItem('diary');
-
-    if (localData) {
-      const diaryList = JSON.parse(localData).sort(
-        (a, b) => parseInt(b.id) - parseInt(a.id)
-      );
-      dataId.current = parseInt(diaryList[0].id) + 1;
-      dispatch({ type: 'INIT', data: diaryList });
-    }
+    getDiaries();
   }, []);
+
+  async function getDiaries() {
+    const { data } = await supabase.from('diary_entries').select();
+
+    if (data) {
+      dataId.current = data.length + 1;
+      dispatch({ type: 'INIT', data });
+    }
+  }
+
 
   //CREATE
   const onCreate = (date, content, emotion) => {
