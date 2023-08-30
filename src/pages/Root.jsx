@@ -11,6 +11,7 @@ const reducer = (state, action) => {
   let newState = [];
   switch (action.type) {
     case 'INIT': {
+      console.log('initialize');
       return action.data;
     }
     case 'CREATE': {
@@ -25,29 +26,6 @@ const reducer = (state, action) => {
       newState = state.map((n) =>
         n.id === action.data.id ? { ...action.data } : n
       );
-      break;
-    }
-    default:
-      return state;
-  }
-
-  localStorage.setItem('diary', JSON.stringify(newState));
-  return newState;
-};
-
-const reducer = (state, action) => {
-  let newState = [];
-  switch (action.type) {
-    case 'INIT': {
-      console.log('initialize');
-      return action.data;
-    }
-    case 'CREATE': {
-      newState = [action.data, ...state];
-      break;
-    }
-    case 'REMOVE': {
-      newState = state.filter((n) => n.id !== action.targetId);
       break;
     }
     default:
@@ -108,15 +86,21 @@ export default function Root() {
   };
 
   //EDIT
-  const onEdit = (targetId, date, content, emotion) => {
+  const onEdit = async (targetId, date, content, emotion) => {
+    const editedData = {
+      date: new Date(date).getTime(),
+      content,
+      emotion,
+    };
+
+    const { error } = await supabase
+      .from('diary_entries')
+      .update(editedData)
+      .eq('id', targetId);
+
     dispatch({
       type: 'EDIT',
-      data: {
-        id: targetId,
-        date: new Date(date).getTime(),
-        content,
-        emotion,
-      },
+      data: { ...editedData, id: targetId },
     });
   };
 
