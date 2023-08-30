@@ -35,6 +35,24 @@ const reducer = (state, action) => {
   return newState;
 };
 
+const reducer = (state, action) => {
+  let newState = [];
+  switch (action.type) {
+    case 'INIT': {
+      console.log('initialize');
+      return action.data;
+    }
+    case 'CREATE': {
+      newState = [action.data, ...state];
+      break;
+    }
+    default:
+      return state;
+  }
+
+  return newState;
+};
+
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
@@ -55,17 +73,19 @@ export default function Root() {
     }
   }
 
-
   //CREATE
-  const onCreate = (date, content, emotion) => {
+  const onCreate = async (date, content, emotion) => {
+    const newData = {
+      id: dataId.current,
+      date: new Date(date).getTime(),
+      content,
+      emotion,
+    };
+    const { error } = await supabase.from('diary_entries').insert(newData);
+
     dispatch({
       type: 'CREATE',
-      data: {
-        id: dataId.current,
-        date: new Date(date).getTime(),
-        content,
-        emotion,
-      },
+      data: newData,
     });
     dataId.current += 1;
   };
